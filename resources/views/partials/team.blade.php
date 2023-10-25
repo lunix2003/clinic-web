@@ -7,15 +7,16 @@
             </div>
             <div class="row g-4">
                 <?php
+                    $fullName = ["Dr.Long","Dr.Senghun","Dr.Chhaly","Dr.Leuy"];
                     for($i=1;$i<5;$i++){
                         ?>
                             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="team-item position-relative rounded overflow-hidden">
                                     <div class="overflow-hidden">
-                                        <img class="img-fluid" src="{{asset('clinic')}}/img/team-1.jpg" alt="">
+                                        <img class="img-fluid" src="{{asset('clinic')}}/img/team-<?php echo $i . ".jpg";?>" alt="">
                                     </div>
                                     <div class="team-text bg-light text-center p-4">
-                                        <h5>Doctor Name <?php echo $i;?></h5>
+                                        <h5><?php echo $fullName[$i-1];?></h5>
                                         <p class="text-primary">Department</p>
                                         <div class="team-social text-center">
                                             <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>

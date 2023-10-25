@@ -7,6 +7,7 @@
             </div>
             <div class="row g-4">
                 <?php
+                    $title = ["Cardiology","Pulmonary","Neurology","Orthopedics","Dental Surgery","Laboratory"];
                     for($i=1;$i<7;$i++){
                         ?>
                             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -14,7 +15,7 @@
                                     <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
                                         <i class="fa fa-heartbeat text-primary fs-4"></i>
                                     </div>
-                                    <h4 class="mb-3">Cardiology</h4>
+                                    <h4 class="mb-3"><?php echo $title[$i-1];?></h4>
                                     <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
                                     <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                                 </div>
