@@ -27,12 +27,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>{{ trans('global.create') }} {{ trans('menu.patients') }}</h1>
+        <h1>{{ trans('global.create') }} {{ trans('menu.contacts') }}</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-          <li class="breadcrumb-item active">{{ trans('global.create') }} {{ trans('menu.patients') }}</li>
+          <li class="breadcrumb-item active">{{ trans('global.create') }} {{ trans('menu.contacts') }}</li>
         </ol>
       </div>
     </div>
@@ -42,25 +42,29 @@
 
 @section('content')
 
-<form action="{{route('patient.store')}}" method="post" enctype="multipart/form-data">
+<form action="{{route('contact.store')}}" method="post" enctype="multipart/form-data">
   @csrf
   <div class="row">
     <div class="col-md-8">
       <div class="card card-primary card-outline">
         <div class="card-header">
-          <h4 class="float-left">{{ trans('global.create') }} {{ trans('menu.patients') }}</h4>
+          <h4 class="float-left">{{ trans('global.create') }} {{ trans('menu.contacts') }}</h4>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <input name="name" class="form-control form-control-lg" type="text" placeholder="Patient name">
+          <input name="name" class="form-control form-control-lg" type="text" placeholder="Name">
           <br>
           <input name="email" class="form-control form-control-lg" type="email" placeholder="Email">
-          <br>
-          <input name="phone" class="form-control form-control-lg" type="tel" placeholder="Phone Number">
-          <br>
-          <input name="date_of_birth" class="form-control form-control-lg" type="date">
-
-
+            <br>
+            <input name="subject" class="form-control form-control-lg" type="text" placeholder="Subject">
+            <br>
+            <div class="form-group">
+                <label for="detail">Message</label>
+                <div class="input-group">
+                  <textarea style="width: 100%;" id="summernote" name="message"
+                    class="form-control form-control-lg"></textarea>
+                </div>
+              </div>
         </div>
         <!-- /.card-body -->
       </div>
@@ -69,32 +73,23 @@
     <div class="col-md-4">
       <div class="card card-primary card-outline">
         <div class="card-header">
-          <h4 class="float-left">{{ trans('global.action') }} {{ trans('menu.patients') }}</h4>
+          <h4 class="float-left">{{ trans('global.action') }} {{ trans('menu.contacts') }}</h4>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          {{-- <div class="form-group">
-            <label for="exampleInputFile">Upload Photo</label>
-            <div class="input-group">
-              <div class="custom-file">
-                <input name="image" type="file" class="custom-file-input" id="exampleInputFile">
-                <label class="custom-file-label" for="exampleInputFile">Choose Image</label>
-              </div>
-            </div>
-          </div> --}}
           <div class="form-group">
-            <label for="exampleInputFile">Status</label>
+            {{-- <label for="exampleInputFile">Status</label>
             <div class="input-group">
               <input type="checkbox" name="status" checked data-bootstrap-switch data-off-color="danger"
                 data-on-color="success">
 
 
-            </div>
+            </div> --}}
           </div>
           <br>
 
           <input type="submit" class="btn btn-primary" value="Save">
-          <a href="{{ route('patient.index') }}" class="btn btn-danger">Cancel</a>
+          <a href="{{ route('contact.index') }}" class="btn btn-danger">Cancel</a>
         </div>
         <!-- /.card-body -->
       </div>

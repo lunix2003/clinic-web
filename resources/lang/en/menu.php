@@ -10,5 +10,10 @@ return array (
     'guides' =>'Guides',
     'packages' =>'Packages',
     'users' =>'Users',
-    'patients' => 'Patients'
+    'patients' => 'Patients',
+    'contacts' => 'Contacts',
+    'doctors' => 'Doctors',
+    'appointments' => 'Appointments',
+    'infos' => 'Informations',
+    'testimonials' => 'Testimonials'
 );

@@ -6,20 +6,18 @@
                 <h1>What Say Our Patients!</h1>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                <?php
-                    for($i=1;$i<4;$i++){
-                        ?>
+               
+                        @foreach ($testimonial as $row)
                             <div class="testimonial-item text-center">
-                                <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="{{asset('clinic')}}/img/testimonial-<?php echo $i ;?>.jpg" style="width: 100px; height: 100px;">
+                                <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="{{ url('storage/testimonial/'.$row->photo) }}" style="width: 100px; height: 100px;">
                                 <div class="testimonial-text rounded text-center p-4">
-                                    <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
-                                    <h5 class="mb-1">Patient Name <?php echo $i;?></h5>
-                                    <span class="fst-italic">Profession</span>
+                                    <p>{{$row->detail}}</p>
+                                    <h5 class="mb-1">{{$row->name}}</h5>
+                                    <span class="fst-italic">{{$row->profession}}</span>
                                 </div>
                             </div>
-                        <?php
-                    }
-                    ?>
+                            
+                        @endforeach
                 <!-- <div class="testimonial-item text-center">
                     <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="{{asset('clinic')}}/img/testimonial-2.jpg" style="width: 100px; height: 100px;">
                     <div class="testimonial-text rounded text-center p-4">

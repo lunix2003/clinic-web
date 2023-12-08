@@ -6,29 +6,26 @@
                 <h1>Our Experience Doctors</h1>
             </div>
             <div class="row g-4">
-                <?php
-                    $fullName = ["Dr.Long","Dr.Senghun","Dr.Chhaly","Dr.Leuy"];
-                    for($i=1;$i<5;$i++){
-                        ?>
+                
+                            @foreach ($doctor as $row)
                             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="team-item position-relative rounded overflow-hidden">
                                     <div class="overflow-hidden">
-                                        <img class="img-fluid" src="{{asset('clinic')}}/img/team-<?php echo $i . ".jpg";?>" alt="">
+                                        <img class="img-fluid" src="{{ url('storage/doctor/'.$row->image) }}" alt="">
                                     </div>
                                     <div class="team-text bg-light text-center p-4">
-                                        <h5><?php echo $fullName[$i-1];?></h5>
-                                        <p class="text-primary">Department</p>
+                                        <h5>{{$row->name}}</h5>
+                                        <p class="text-primary">{{$row->department_name}}</p>
                                         <div class="team-social text-center">
-                                            <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
-                                            <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
-                                            <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
+                                            <a class="btn btn-square" href="{{$row->fb_link}}"><i class="fab fa-facebook-f"></i></a>
+                                            <a class="btn btn-square" href="{{$row->twitter_link}}"><i class="fab fa-twitter"></i></a>
+                                            <a class="btn btn-square" href="{{$row->instagram_link}}"><i class="fab fa-instagram"></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        <?php
-                    }
-                    ?>
+                                
+                            @endforeach
                 <!-- <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="team-item position-relative rounded overflow-hidden">
                         <div class="overflow-hidden">

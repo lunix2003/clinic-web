@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\ClinicInfoController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ServicController;
+use App\Http\Controllers\TestimonialController;
 use App\Models\Patient;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -31,8 +37,15 @@ Route::middleware(['auth','user-access:admin'])->group(function(){
         // Route::get('service',[ServiceController::class,'index'])->name('admin.service');
         // Route::get('service/create',[ServiceController::class,'create'])->name('admin.service.create');
         // Route::post('service/store',[ServiceController::class,'store'])->name('admin.service.store');    
-        Route::get('patient',[PatientController::class,'index'])->name('admin.patient.index');
-        Route::get('patient/create',[PatientController::class,'create'])->name('admin.patient.create');
+        // Route::get('patient',[PatientController::class,'index'])->name('admin.patient.index');
+        // Route::get('patient/create',[PatientController::class,'create'])->name('admin.patient.create');
+        Route::resource('patient',PatientController::class);
+        Route::resource('service',ServicController::class);
+        Route::resource('contact',ContactController::class);
+        Route::resource('doctor',DoctorController::class);
+        Route::resource('appointment',AppointmentController::class);
+        Route::resource('testimonial',TestimonialController::class);
+        Route::resource('info',ClinicInfoController::class);
     });
 });
 

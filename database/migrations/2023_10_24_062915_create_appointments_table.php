@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('appointment_date')->nullable();
             $table->timestamp('appointment_time');
             $table->string('problem');
+            $table->string('status')->default("Confirm");
             $table->timestamps();
         });
     }

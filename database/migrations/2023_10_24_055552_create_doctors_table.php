@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->string("image");
-            $table->integer("department_id");
+            $table->string("department_name");
             $table->string("fb_link");
             $table->string("twitter_link");
             $table->string("instagram_link");
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

@@ -1,6 +1,6 @@
 @extends('layouts.admin_app')
 @section('title')
-Patient Management
+Service Management
 @endsection
 @push('styles')
 <!-- DataTables -->
@@ -14,12 +14,12 @@ Patient Management
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>{{ trans('global.list') }} {{ trans('menu.patients') }}</h1>
+                <h1>{{ trans('global.list') }} {{ trans('menu.testimonials') }}</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Patient</li>
+                    <li class="breadcrumb-item active">testimonial</li>
                 </ol>
             </div>
         </div>
@@ -31,9 +31,9 @@ Patient Management
 
 <div class="card card-primary card-outline">
     <div class="card-header">
-        <h3 class="float-left">{{ trans('global.list') }} {{ trans('menu.patients') }}</h3>
+        <h3 class="float-left">{{ trans('global.list') }} {{ trans('menu.testimonials') }}</h3>
 
-        <a class="btn btn-primary float-right" href="{{ route('patient.create') }}">
+        <a class="btn btn-primary float-right" href="{{ route('testimonial.create') }}">
             <i class="fas fa-plus"></i> {{ trans('global.new') }}
         </a>
     </div>
@@ -44,27 +44,33 @@ Patient Management
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Date of Birth</th>
+                    <th>Detail</th>
+                    <th>Profession</th>
+                    <th>Image</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($patients as $row)
+                @foreach ($testimonial as $row)
                 <tr>
                     <td>{{ $row->id }}</td>
                     <td>
                         <?php echo $row->name ?>
                     </td>
-                    <td>{{ $row->email }}</td>
-                    <td>{{ $row->phone }}</td>
-                    <td>{{ $row->date_of_birth}}</td>
+                    <td>{{ $row->detail }}</td>
+                    <td>{{ $row->profession }}</td>
+                    <td>
+                        <img class="info-box-icon" height="32" src="{{ url('storage/testimonial/'.$row->photo) }}"
+                        alt="{{ $row->photo }}">
+                    </td>
+                    <td>{{ $row->status == 1 ?'Available' : 'Unvialable' }}</td>
+
                     <td class="align-middle">
-                        <form action="{{route('patient.destroy',$row->id)}}" method="POST">
-                            <a class="btn btn-info" href="{{ route('patient.show',$row->id)}}"><i
+                        <form action="{{route('testimonial.destroy',$row->id)}}" method="POST">
+                            <a class="btn btn-info" href="{{ route('testimonial.show',$row->id)}}"><i
                                     class="fa fa-eye"></i></a>
-                            <a class="btn btn-primary" href="{{route('patient.edit',$row->id)}}"><i
+                            <a class="btn btn-primary" href="{{route('testimonial.edit',$row->id)}}"><i
                                     class="fa fa-edit"></i></a>
                             @csrf
                             @method('DELETE')
@@ -80,9 +86,10 @@ Patient Management
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Date of Birth</th>
+                    <th>Detail</th>
+                    <th>Profession</th>
+                    <th>Image</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </tfoot>

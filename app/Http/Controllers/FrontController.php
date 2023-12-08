@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -23,6 +25,7 @@ class FrontController extends Controller
     public function doctor(){
         $data["title"] = "Doctors";
         $data["dest"] = "Doctor";
+        $data["doctor"]=Doctor::get();
         return view("front_doctor",$data);
     }
     public function feature(){
@@ -38,6 +41,7 @@ class FrontController extends Controller
     public function testimonial(){
         $data["title"] = "Testimonail";
         $data["dest"] = "Testimonail";
+        $data["testimonial"]= Testimonial::get();
         return view("front_testimonial",$data);
     }
     public function error(){

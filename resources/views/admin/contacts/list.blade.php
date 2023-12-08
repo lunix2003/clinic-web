@@ -1,6 +1,6 @@
 @extends('layouts.admin_app')
 @section('title')
-Patient Management
+Service Management
 @endsection
 @push('styles')
 <!-- DataTables -->
@@ -14,12 +14,12 @@ Patient Management
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>{{ trans('global.list') }} {{ trans('menu.patients') }}</h1>
+                <h1>{{ trans('global.list') }} {{ trans('menu.contacts') }}</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Patient</li>
+                    <li class="breadcrumb-item active">contact</li>
                 </ol>
             </div>
         </div>
@@ -31,9 +31,9 @@ Patient Management
 
 <div class="card card-primary card-outline">
     <div class="card-header">
-        <h3 class="float-left">{{ trans('global.list') }} {{ trans('menu.patients') }}</h3>
+        <h3 class="float-left">{{ trans('global.list') }} {{ trans('menu.contacts') }}</h3>
 
-        <a class="btn btn-primary float-right" href="{{ route('patient.create') }}">
+        <a class="btn btn-primary float-right" href="{{ route('contact.create') }}">
             <i class="fas fa-plus"></i> {{ trans('global.new') }}
         </a>
     </div>
@@ -45,26 +45,27 @@ Patient Management
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Phone</th>
-                    <th>Date of Birth</th>
+                    <th>Subject</th>
+                    <th>Message</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($patients as $row)
+                @foreach ($contact as $row)
                 <tr>
                     <td>{{ $row->id }}</td>
                     <td>
                         <?php echo $row->name ?>
                     </td>
                     <td>{{ $row->email }}</td>
-                    <td>{{ $row->phone }}</td>
-                    <td>{{ $row->date_of_birth}}</td>
+                    <td>{{ $row->subject }}</td>
+                    <td>{{ $row->message }}</td>
+
                     <td class="align-middle">
-                        <form action="{{route('patient.destroy',$row->id)}}" method="POST">
-                            <a class="btn btn-info" href="{{ route('patient.show',$row->id)}}"><i
+                        <form action="{{route('contact.destroy',$row->id)}}" method="POST">
+                            <a class="btn btn-info" href="{{ route('contact.show',$row->id)}}"><i
                                     class="fa fa-eye"></i></a>
-                            <a class="btn btn-primary" href="{{route('patient.edit',$row->id)}}"><i
+                            <a class="btn btn-primary" href="{{route('contact.edit',$row->id)}}"><i
                                     class="fa fa-edit"></i></a>
                             @csrf
                             @method('DELETE')
@@ -81,8 +82,8 @@ Patient Management
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Phone</th>
-                    <th>Date of Birth</th>
+                    <th>Subject</th>
+                    <th>Message</th>
                     <th>Action</th>
                 </tr>
             </tfoot>

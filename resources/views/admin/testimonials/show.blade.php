@@ -27,12 +27,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>{{ trans('global.create') }} {{ trans('menu.patients') }}</h1>
+        <h1>{{ trans('global.create') }} {{ trans('menu.testimonials') }}</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-          <li class="breadcrumb-item active">{{ trans('global.create') }} {{ trans('menu.patients') }}</li>
+          <li class="breadcrumb-item active">{{ trans('global.create') }} {{ trans('menu.testimonials') }}</li>
         </ol>
       </div>
     </div>
@@ -42,23 +42,28 @@
 
 @section('content')
 
-<form action="{{route('patient.store')}}" method="post" enctype="multipart/form-data">
+<form action="{{route('testimonial.update',$testimonial->id)}}" method="post" enctype="multipart/form-data">
   @csrf
   <div class="row">
     <div class="col-md-8">
       <div class="card card-primary card-outline">
         <div class="card-header">
-          <h4 class="float-left">{{ trans('global.create') }} {{ trans('menu.patients') }}</h4>
+          <h4 class="float-left">{{ trans('global.create') }} {{ trans('menu.testimonials') }}</h4>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <input name="name" class="form-control form-control-lg" type="text" placeholder="Patient name">
+          <input name="name" class="form-control form-control-lg" type="text" placeholder="Name" value="{{$testimonial->name}}">
           <br>
-          <input name="email" class="form-control form-control-lg" type="email" placeholder="Email">
+          <div class="form-group">
+            <label for="detail">Detail</label>
+            <div class="input-group">
+              <textarea style="width: 100%;" id="summernote" name="detail"
+                class="form-control form-control-lg">{{$testimonial->detail}}</textarea>
+            </div>
+          </div>
           <br>
-          <input name="phone" class="form-control form-control-lg" type="tel" placeholder="Phone Number">
+          <input name="profession" class="form-control form-control-lg" type="text" placeholder="Profession title" value="{{$testimonial->profession}}">
           <br>
-          <input name="date_of_birth" class="form-control form-control-lg" type="date">
 
 
         </div>
@@ -69,19 +74,22 @@
     <div class="col-md-4">
       <div class="card card-primary card-outline">
         <div class="card-header">
-          <h4 class="float-left">{{ trans('global.action') }} {{ trans('menu.patients') }}</h4>
+          <h4 class="float-left">{{ trans('global.action') }} {{ trans('menu.testimonials') }}</h4>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          {{-- <div class="form-group">
-            <label for="exampleInputFile">Upload Photo</label>
-            <div class="input-group">
-              <div class="custom-file">
-                <input name="image" type="file" class="custom-file-input" id="exampleInputFile">
-                <label class="custom-file-label" for="exampleInputFile">Choose Image</label>
-              </div>
+            <div class="form-group">
+                <img class="img-thumbnail" src="{{ url('storage/testimonial/'.$testimonial->photo) }}"
+                    alt="{{ $testimonial->photo }}">
+                <label for="upload_file">Upload Photo</label>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="hidden" name="old_image" value="{{ $testimonial->photo }}">
+                        <input name="photo" type="file" class="custom-file-input" id="upload_file">
+                        <label class="custom-file-label" for="upload_file">Choose Image</label>
+                    </div>
+                </div>
             </div>
-          </div> --}}
           <div class="form-group">
             <label for="exampleInputFile">Status</label>
             <div class="input-group">
@@ -93,8 +101,8 @@
           </div>
           <br>
 
-          <input type="submit" class="btn btn-primary" value="Save">
-          <a href="{{ route('patient.index') }}" class="btn btn-danger">Cancel</a>
+          {{-- <input type="submit" class="btn btn-primary" value="Save"> --}}
+          <a href="{{ route('testimonial.index') }}" class="btn btn-danger">Back</a>
         </div>
         <!-- /.card-body -->
       </div>

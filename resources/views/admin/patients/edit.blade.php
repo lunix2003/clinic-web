@@ -42,8 +42,9 @@
 
 @section('content')
 
-<form action="{{route('patient.store')}}" method="post" enctype="multipart/form-data">
+<form action="{{route('patient.update',$patient->id)}}" method="POST" enctype="multipart/form-data">
   @csrf
+  @method('PUT')
   <div class="row">
     <div class="col-md-8">
       <div class="card card-primary card-outline">
@@ -52,13 +53,13 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <input name="name" class="form-control form-control-lg" type="text" placeholder="Patient name">
+          <input name="name" class="form-control form-control-lg" type="text" placeholder="Patient name" value="{{$patient->name}}">
           <br>
-          <input name="email" class="form-control form-control-lg" type="email" placeholder="Email">
+          <input name="email" class="form-control form-control-lg" type="email" placeholder="Email" value="{{$patient->email}}">
           <br>
-          <input name="phone" class="form-control form-control-lg" type="tel" placeholder="Phone Number">
+          <input name="phone" class="form-control form-control-lg" type="tel" placeholder="Phone Number" value="{{$patient->phone}}">
           <br>
-          <input name="date_of_birth" class="form-control form-control-lg" type="date">
+          <input name="date_of_birth" class="form-control form-control-lg" type="date" value="{{$patient->date_of_birth}}">
 
 
         </div>
