@@ -53,6 +53,9 @@ class DoctorController extends Controller
                 'message'=>$ep->getMessage()
             ],500);
         }
+        if($request->image){
+            
+        }
 
     }
     public function update(Request $request,Doctor $doctor){

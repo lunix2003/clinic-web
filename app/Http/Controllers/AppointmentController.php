@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use App\Models\Doctor;
+use App\Models\Patient;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -22,7 +24,9 @@ class AppointmentController extends Controller
         return view('admin.appointments.edit',$data); 
     }
     public function create(){
-        return view('admin.appointments.create');
+        $data["patients"] = Patient::get();
+        $data["doctors"] = Doctor::get();
+        return view('admin.appointments.create',$data);
     }
     public function store(Request $request){
         $request->validate([
@@ -37,6 +41,7 @@ class AppointmentController extends Controller
                 'patient_id'=>$request->patient_id,
                 'doctor_id'=>$request->doctor_id,
                 'appointment_date'=>$request->appointment_date,
+                'appointment_time'=>$request->appointment_time,
                 'problem'=>$request->problem,
             ];
             Appointment::create($allData);
@@ -63,6 +68,7 @@ class AppointmentController extends Controller
             $appointment->patient_id=$request->input('patient_id');
             $appointment->doctor_id=$request->input('doctor_id'); 
             $appointment->appointment_date=$request->input('appointment_date');
+            $appointment->appointment_time=$request->input('appointment_time');
             $appointment->problem=$request->input('problem');
             $appointment->status=$request->input('status');
             $appointment->save();

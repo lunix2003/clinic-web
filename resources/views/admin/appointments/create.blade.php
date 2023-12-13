@@ -52,15 +52,29 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <input name="name" class="form-control form-control-lg" type="text" placeholder="Doctor name">
+        <select class="form-control form-control-lg" id="doctor" name="doctor_id">
+            @foreach($doctors as $row)
+              <option value="{{$row->id}}">{{$row->name}}</option>
+              @endforeach
+          </select>
           <br>
-          <input name="department_name" class="form-control form-control-lg" type="text" placeholder="Department">
+          <select class="form-control form-control-lg" id="patient" name="patient_id">
+            @foreach($patients as $row)
+              <option value="{{$row->id}}">{{$row->name}}</option>
+              @endforeach
+          </select>
             <br>
-            <input name="fb_link" class="form-control form-control-lg" type="text" placeholder="Facebook Link">
+            <input name="appointment_date" class="form-control form-control-lg" type="date">
             <br>
-            <input name="twitter_link" class="form-control form-control-lg" type="text" placeholder="Twitter Link">
+            <input name="appointment_time" class="form-control form-control-lg" type="time" placeholder="Time">
             <br>
-            <input name="instagram_link" class="form-control form-control-lg" type="text" placeholder="Instagram Link">
+            <div class="form-group">
+                <label for="detail">Problem</label>
+                <div class="input-group">
+                  <textarea style="width: 100%;" id="summernote" name="problem"
+                    class="form-control form-control-lg"></textarea>
+                </div>
+              </div>
             <br>
 
         </div>
@@ -74,16 +88,7 @@
           <h4 class="float-left">{{ trans('global.action') }} {{ trans('menu.appointments') }}</h4>
         </div>
         <!-- /.card-header -->
-        <div class="card-body">
-          <div class="form-group">
-            <label for="exampleInputFile">Upload Photo</label>
-            <div class="input-group">
-              <div class="custom-file">
-                <input name="image" type="file" class="custom-file-input" id="exampleInputFile">
-                <label class="custom-file-label" for="exampleInputFile">Choose Image</label>
-              </div>
-            </div>
-          </div>
+        <!-- <div class="card-body">
           <div class="form-group">
             <label for="exampleInputFile">Status</label>
             <div class="input-group">
@@ -92,7 +97,7 @@
 
 
             </div>
-          </div>
+          </div> -->
           <br>
 
           <input type="submit" class="btn btn-primary" value="Save">

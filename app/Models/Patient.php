@@ -14,5 +14,8 @@ class Patient extends Model
         'status' => 'boolean',
         // 'is_place' => 'boolean',
     ];
+    public static function show(){
+        
+    }
 }
 

@@ -56,10 +56,11 @@ Service Management
                 @foreach ($appointment as $row)
                 <tr>
                     <td>{{ $row->id }}</td>
-                    <td>{{ $row->patient_name }}</td>
-                    <td>{{ $row->doctor_name }}</td>
+                    <td>{{ $row->p_name }}</td>
+                    <td>{{ $row->d_name }}</td>
                     <td>{{ $row->appointment_date }}</td>
                     <td>{{ $row->appointment_time }}</td>
+                    <td>{{ $row->problem }}</td>
                     <td>{{ $row->status}}</td>
 
                     <td class="align-middle">
