@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 class AppointmentController extends Controller
 {
     public function index(){
-        $data['appointment']=Appointment::get();
+        $data['appointment']=Appointment::show();
         return view('admin.appointments.list',$data);
     }
     public function show(Appointment $appointment){

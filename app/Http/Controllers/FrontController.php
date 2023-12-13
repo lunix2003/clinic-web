@@ -10,7 +10,9 @@ class FrontController extends Controller
 {
     //
     public function index(){
-        return view("front_home");
+        $data["doctor"]=Doctor::get();
+        $data["testimonial"]= Testimonial::get();
+        return view("front_home",$data);
     }
     public function about(){
         $data["title"] = "About Us";

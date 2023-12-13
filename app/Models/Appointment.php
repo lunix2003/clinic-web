@@ -14,4 +14,12 @@ class Appointment extends Model
         'status' => 'boolean',
         // 'is_place' => 'boolean',
     ];
+    public static function show(){
+        $appointments = Appointment::select('appointments.id', 'patients.name','doctors.name', 'appointments.appointment_date', 'appointments.appointment_time','appointments.problem','appointments.status')
+        	->join('patients', 'patients.id', '=', 'appointments.patient_id')
+            ->join('doctors', 'doctors.id','=','appointments.doctor_id')
+        	->get();
+            return $appointments;
+
+    }
 }

@@ -14,12 +14,12 @@ Service Management
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>{{ trans('global.list') }} {{ trans('menu.doctors') }}</h1>
+                <h1>{{ trans('global.list') }} {{ trans('menu.appointments') }}</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">doctor</li>
+                    <li class="breadcrumb-item active">appointment</li>
                 </ol>
             </div>
         </div>
@@ -31,9 +31,9 @@ Service Management
 
 <div class="card card-primary card-outline">
     <div class="card-header">
-        <h3 class="float-left">{{ trans('global.list') }} {{ trans('menu.doctors') }}</h3>
+        <h3 class="float-left">{{ trans('global.list') }} {{ trans('menu.appointments') }}</h3>
 
-        <a class="btn btn-primary float-right" href="{{ route('doctor.create') }}">
+        <a class="btn btn-primary float-right" href="{{ route('appointment.create') }}">
             <i class="fas fa-plus"></i> {{ trans('global.new') }}
         </a>
     </div>
@@ -43,38 +43,30 @@ Service Management
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Image</th>
-                    <th>Department</th>
-                    <th>Facebook</th>
-                    <th>Twitter</th>
-                    <th>Instagram</th>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Problem</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($doctor as $row)
+                @foreach ($appointment as $row)
                 <tr>
                     <td>{{ $row->id }}</td>
-                    <td>
-                        <?php echo $row->name ?>
-                    </td>
-                    <td>
-                        <img class="info-box-icon" height="32" src="{{ url('storage/doctor/'.$row->image) }}"
-                        alt="{{ $row->image }}">
-                    </td>
-                    <td>{{ $row->department_name }}</td>
-                    <td>{{ $row->fb_link }}</td>
-                    <td>{{ $row->twitter_link }}</td>
-                    <td>{{ $row->instagram_link }}</td>
-                    <td>{{ $row->status == 1 ?'Available' : 'Busy' }}</td>
+                    <td>{{ $row->patient_name }}</td>
+                    <td>{{ $row->doctor_name }}</td>
+                    <td>{{ $row->appointment_date }}</td>
+                    <td>{{ $row->appointment_time }}</td>
+                    <td>{{ $row->status}}</td>
 
                     <td class="align-middle">
-                        <form action="{{route('doctor.destroy',$row->id)}}" method="POST">
-                            <a class="btn btn-info" href="{{ route('doctor.show',$row->id)}}"><i
+                        <form action="{{route('appointment.destroy',$row->id)}}" method="POST">
+                            <a class="btn btn-info" href="{{ route('appointment.show',$row->id)}}"><i
                                     class="fa fa-eye"></i></a>
-                            <a class="btn btn-primary" href="{{route('doctor.edit',$row->id)}}"><i
+                            <a class="btn btn-primary" href="{{route('appointment.edit',$row->id)}}"><i
                                     class="fa fa-edit"></i></a>
                             @csrf
                             @method('DELETE')
@@ -89,12 +81,11 @@ Service Management
             <tfoot>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Image</th>
-                    <th>Department</th>
-                    <th>Facebook</th>
-                    <th>Twitter</th>
-                    <th>Instagram</th>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Problem</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
