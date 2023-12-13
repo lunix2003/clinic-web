@@ -21,6 +21,8 @@ class AppointmentController extends Controller
     }
     public function edit(Appointment $appointment){
         $data['appointment']=Appointment::findOrFail($appointment->id);
+        $data["patients"] = Patient::get();
+        $data["doctors"] = Doctor::get();
         return view('admin.appointments.edit',$data); 
     }
     public function create(){
@@ -64,13 +66,13 @@ class AppointmentController extends Controller
         ]);
 
         try{
-            $appointment =appointment::findOrFail($appointment->id);
+            $appointment =Appointment::findOrFail($appointment->id);
             $appointment->patient_id=$request->input('patient_id');
             $appointment->doctor_id=$request->input('doctor_id'); 
             $appointment->appointment_date=$request->input('appointment_date');
             $appointment->appointment_time=$request->input('appointment_time');
             $appointment->problem=$request->input('problem');
-            $appointment->status=$request->input('status');
+            $appointment->status=$request->status=='on'?true:false;
             $appointment->save();
 
             return redirect()->route('appointment.index')->with('success','appointment has updated successfully');
