@@ -96,7 +96,7 @@
             <label for="exampleInputFile">Upload Photo</label>
             <div class="input-group">
               <div class="custom-file">
-                <input name="image" type="file" class="custom-file-input" id="exampleInputFile">
+                <input name="photo" type="file" class="custom-file-input" id="exampleInputFile">
                 <label class="custom-file-label" for="exampleInputFile">Choose Image</label>
               </div>
             </div>

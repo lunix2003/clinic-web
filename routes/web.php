@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\AppointmentController;
-use App\Http\Controllers\ClinicInfoController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\DoctorController;
-use App\Http\Controllers\PatientController;
-use App\Http\Controllers\ServicController;
-use App\Http\Controllers\TestimonialController;
 use App\Models\Patient;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\ServicController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ClinicInfoController;
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\TestimonialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,8 +41,11 @@ Route::middleware(['auth','user-access:admin'])->group(function(){
         // Route::get('patient',[PatientController::class,'index'])->name('admin.patient.index');
         // Route::get('patient/create',[PatientController::class,'create'])->name('admin.patient.create');
         Route::resource('patient',PatientController::class);
+        Route::post('patient/patient_appointment',[PatientController::class,'patient_appointment'])->name('patient.patient_appointment');
         Route::resource('service',ServicController::class);
         Route::resource('contact',ContactController::class);
+        Route::post('contact/store_from_web',[ContactController::class,'store_from_web'])->name('contact.store_from_web');
+        
         Route::resource('doctor',DoctorController::class);
         Route::resource('appointment',AppointmentController::class);
         Route::resource('testimonial',TestimonialController::class);
@@ -77,7 +81,7 @@ Route::get('admin-create',function(){
 })->name('patient.create');
 
 
-Route::get('send-sms', [NotificationController::class, 'sendSmsNotificaition']);
+//Route::get('send-sms', [NotificationController::class, 'sendSmsNotificaition']);
 
 
 Route::get('auth_sample',function(){

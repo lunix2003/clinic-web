@@ -54,7 +54,7 @@ Service Management
                     <th>Youtube</th>
                     <th>Linkedin</th>
                     <th>Instagram</th>
-                    <th>photo</th>
+                    <th>Image</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -77,8 +77,8 @@ Service Management
                     <td>{{ $row->instagram }}</td>
                     
                     <td>
-                        <img class="info-box-icon" height="32" src="{{ url('storage/info/'.$row->image) }}"
-                        alt="{{ $row->image }}">
+                        <img class="info-box-icon" height="32" src="{{ url('storage/infor/'.$row->photo) }}"
+                        alt="{{ $row->photo }}">
                     </td>
                     <td class="align-middle">
                         <form action="{{route('info.destroy',$row->id)}}" method="POST">
@@ -110,7 +110,7 @@ Service Management
                     <th>Youtube</th>
                     <th>Linkedin</th>
                     <th>Instagram</th>
-                    <th>photo</th>
+                    <th>Image</th>
                     <th>Action</th>
                 </tr>
             </tfoot>

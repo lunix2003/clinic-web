@@ -84,7 +84,7 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="/" class="nav-item nav-link {{(request()->is('/')) ? 'active' : ''}}">Home</a>
                 <a href="/about" class="nav-item nav-link {{(request()->is('about')) ? 'active' : ''}}">About</a>
-                <a href="/service" class="nav-item nav-link {{(request()->is('service')) ? 'active' : ''}}">Service</a>
+                <a href="/services" class="nav-item nav-link {{(request()->is('services')) ? 'active' : ''}}">Service</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu rounded-0 rounded-bottom m-0">

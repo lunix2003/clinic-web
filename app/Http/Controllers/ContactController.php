@@ -42,8 +42,38 @@ class ContactController extends Controller
                 'message'=>$request->message,
                 'status'=>$request->status=='on'?true:false
             ];
-            Contact::create($allData);
-            return redirect()->route('contact.index')->with('success','contact has added successfully');
+            if(Contact::create($allData)){
+                return redirect()->route('contact.index')->with('success','contact has added successfully');
+
+            }
+        }
+        catch(Exception $ep){
+            Log::error($ep->getMessage());
+            return response()->json([
+                'message'=>$ep->getMessage()
+            ],500);
+        }
+
+    }
+    public function store_from_web(Request $request){
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required',
+            'subject'=>'required',
+            'message'=>'required',
+        ]);
+        try{
+           
+            $allData=[
+                'name'=>$request->name,
+                'email'=>$request->email,
+                'subject'=>$request->subject,
+                'message'=>$request->message,
+                'status'=>$request->status=='on'?true:false
+            ];
+            if(Contact::create($allData)){
+                return redirect()->route('front.contact')->with('success','contact has added successfully');
+            }
         }
         catch(Exception $ep){
             Log::error($ep->getMessage());

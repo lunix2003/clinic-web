@@ -7,6 +7,7 @@ use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class AppointmentController extends Controller
@@ -31,6 +32,14 @@ class AppointmentController extends Controller
         return view('admin.appointments.create',$data);
     }
     public function store(Request $request){
+        // $appointment = new Appointment();
+        // $appointment->patient_id = $request->get('patient_id');
+        // $appointment->doctor_id = $request->get('doctor_id');
+        // $appointment->appointment_date = $request->get('appointment_date');
+        // $appointment->appointment_time = $request->get('appointment_time');
+        // $appointment->problem = $request->get('problem');
+        // $appointment->save();
+        // echo $appointment->id;
         $request->validate([
             'patient_id'=>'required',
             'doctor_id'=>'required',
@@ -38,7 +47,7 @@ class AppointmentController extends Controller
             'problem'=>'required',
         ]);
         try{
-           
+            
             $allData=[
                 'patient_id'=>$request->patient_id,
                 'doctor_id'=>$request->doctor_id,
@@ -47,6 +56,7 @@ class AppointmentController extends Controller
                 'problem'=>$request->problem,
             ];
             Appointment::create($allData);
+            
             return redirect()->route('appointment.index')->with('success','appointment has added successfully');
         }
         catch(Exception $ep){
@@ -55,6 +65,10 @@ class AppointmentController extends Controller
                 'message'=>$ep->getMessage()
             ],500);
         }
+
+    }
+    public function saveAppointment(Request $request){
+        
 
     }
     public function update(Request $request,Appointment $appointment){

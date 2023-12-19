@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use App\Models\Doctor;
 use App\Models\Patient;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -40,7 +42,8 @@ class PatientController extends Controller
                 'phone'=>$request->phone,
                 'date_of_birth'=>$request->date_of_birth    
             ];
-            Patient::create($AllData);
+            $id = Patient::create($AllData)->id;
+        
             return redirect()->route('patient.index')->with('success','Patient has created successfully');
         }
         catch(Exception $ep){
@@ -50,6 +53,35 @@ class PatientController extends Controller
             ],500);
         }
     }
+    public function patient_appointment(Request $request){
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required',
+            'phone'=>'required',
+            'doctor_id'=>'required',
+            'problem'=>'required',
+            'appointment_date'=>'required',
+            'appointment_time'=>'required'
+        ]);
+
+        $patient = new Patient();
+        $patient->name = $request->name;
+        $patient->email = $request->email;
+        $patient->phone = $request->phone;
+        $patient->date_of_birth = '2003-09-18';
+        $patient->save();
+        
+        $appointment = new Appointment();
+        $appointment->patient_id = $patient->id;
+        $appointment->doctor_id = $request->doctor_id;
+        $appointment->appointment_date = $request->appointment_date;
+        $appointment->appointment_time = $request->appointment_time;
+        $appointment->problem = $request->problem;
+        if($appointment->save()){
+            return redirect()->route('front.appointment')->with('success','Appointment has added successfully');
+        }
+    }
+    
 
     public function edit (Patient $patient){ 
         $data["patient"]=Patient::findOrFail($patient->id);

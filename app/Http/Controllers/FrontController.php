@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
+use App\Models\Servic;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
@@ -11,17 +12,20 @@ class FrontController extends Controller
     //
     public function index(){
         $data["doctor"]=Doctor::get();
+        $data["service"]=Servic::get();
         $data["testimonial"]= Testimonial::get();
         return view("front_home",$data);
     }
     public function about(){
         $data["title"] = "About Us";
         $data["dest"] = "About";
+        $data["doctor"]=Doctor::get();
         return view("front_about",$data);
     }
     public function service(){
         $data["title"] = "Services";
         $data["dest"] = "Service";
+        $data["service"]=Servic::get();
         return view("front_service",$data);
     }
     public function doctor(){
@@ -38,6 +42,7 @@ class FrontController extends Controller
     public function appointment(){
         $data["title"] = "Appointment";
         $data["dest"] = "Appointment";
+        $data["doctor"]=Doctor::get();
         return view("front_appointment",$data);
     }
     public function testimonial(){

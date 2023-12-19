@@ -20,7 +20,7 @@ class ClinicInfoController extends Controller
         return view('admin.infors.show',$data);
     }
     public function edit(ClinicInfo $infor){
-        $data['infor']=ClinicInfo::findOrFail($infor->id);
+        $data['info']=ClinicInfo::findOrFail($infor->id);
         return view('admin.infors.edit',$data); 
     }
     public function create(){
@@ -59,8 +59,10 @@ class ClinicInfoController extends Controller
                 'photo'=>$imageName,
                 'status'=>$request->status=='on'?true:false
             ];
-            ClinicInfo::create($allData);
-            return redirect()->route('infor.index')->with('success','ClinicInfo has added successfully');
+            if(ClinicInfo::create($allData)){
+                return redirect()->route('info.index')->with('success','ClinicInfo has added successfully');
+
+            }
         }
         catch(Exception $ep){
             Log::error($ep->getMessage());
@@ -130,7 +132,7 @@ class ClinicInfoController extends Controller
                 $infor->status=='on'?true:false;
                 $infor->save();
             }
-            return redirect()->route('infor.index')->with('success','infor has updated successfully');
+            return redirect()->route('info.index')->with('success','infor has updated successfully');
 
         }
         catch(Exception $ep){
@@ -149,7 +151,7 @@ class ClinicInfoController extends Controller
                 }
             }
             $infor->delete();
-            return redirect()->route('infor.index')->with('success','infor delete successfully');
+            return redirect()->route('info.index')->with('success','infor delete successfully');
             
         } catch (\Exception $e) {
             Log::error($e->getMessage());
