@@ -52,6 +52,9 @@ Route::middleware(['auth','user-access:admin'])->group(function(){
         Route::resource('info',ClinicInfoController::class);
     });
 });
+Route::get('/test',function(){
+    return view('admin.infors.edit');
+});
 
 // All Normal Users Routes List
 Route::middleware(['auth','user-access:user'])->group(function(){
@@ -74,11 +77,11 @@ Route::get('admin-sample',function(){
     $data['patients']=Patient::get();
     return view('admin.patients.list',$data);
 });
-Route::get('admin-create',function(){
-    // return view('layouts.admin_app');
-    $data['patients']=Patient::get();
-    return view('admin.patients.create',$data);
-})->name('patient.create');
+// Route::get('admin-create',function(){
+//     // return view('layouts.admin_app');
+//     $data['patients']=Patient::get();
+//     return view('admin.patients.create',$data);
+// })->name('patient.create');
 
 
 //Route::get('send-sms', [NotificationController::class, 'sendSmsNotificaition']);

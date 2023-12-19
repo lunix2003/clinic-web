@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use App\Models\ClinicInfo;
 use App\Models\Testimonial;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -13,18 +14,22 @@ class TestimonialController extends Controller
 {
     public function index(){
         $data['testimonial']=Testimonial::get();
+        $data['info']=ClinicInfo::get();
         return view('admin.testimonials.list',$data);
     }
     public function show(Testimonial $testimonial){
+        $data['info']=ClinicInfo::get();
         $data['testimonial']=Testimonial::findOrFail($testimonial->id);
         return view('admin.testimonials.show',$data);
     }
     public function edit(Testimonial $testimonial){
+        $data['info']=ClinicInfo::get();
         $data['testimonial']=Testimonial::findOrFail($testimonial->id);
         return view('admin.testimonials.edit',$data); 
     }
     public function create(){
-        return view('admin.testimonials.create');
+        $data['info']=ClinicInfo::get();
+        return view('admin.testimonials.create',$data);
     }
     public function store(Request $request){
         $request->validate([

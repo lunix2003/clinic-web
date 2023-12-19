@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\Doctor;
 use App\Models\Patient;
+use App\Models\ClinicInfo;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,13 +15,16 @@ class AppointmentController extends Controller
 {
     public function index(){
         $data['appointment']=Appointment::show();
+        $data['info']=ClinicInfo::get();
         return view('admin.appointments.list',$data);
     }
     public function show(Appointment $appointment){
+        $data['info']=ClinicInfo::get();
         $data['appointment']=Appointment::findOrFail($appointment->id);
         return view('admin.appointments.show',$data);
     }
     public function edit(Appointment $appointment){
+        $data['info']=ClinicInfo::get();
         $data['appointment']=Appointment::findOrFail($appointment->id);
         $data["patients"] = Patient::get();
         $data["doctors"] = Doctor::get();
@@ -29,6 +33,7 @@ class AppointmentController extends Controller
     public function create(){
         $data["patients"] = Patient::get();
         $data["doctors"] = Doctor::get();
+        $data['info']=ClinicInfo::get();
         return view('admin.appointments.create',$data);
     }
     public function store(Request $request){

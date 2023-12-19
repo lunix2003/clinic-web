@@ -12,19 +12,19 @@ use Illuminate\Support\Facades\Storage;
 class ClinicInfoController extends Controller
 {
     public function index(){
-        $data['infor']=ClinicInfo::get();
+        $data['info']=ClinicInfo::get();
         return view('admin.infors.list',$data);
     }
-    public function show(ClinicInfo $infor){
-        $data['infor']=ClinicInfo::findOrFail($infor->id);
-        return view('admin.infors.show',$data);
-    }
-    public function edit(ClinicInfo $infor){
-        $data['info']=ClinicInfo::findOrFail($infor->id);
-        return view('admin.infors.edit',$data); 
-    }
+    // public function edit(ClinicInfo $infor){
+    //     $data['info']=ClinicInfo::get();
+    //     $data['info']=ClinicInfo::findOrFail($infor->id);
+    //     return view('admin.infors.edit',$data); 
+    //     return '<h2>Hello</h2>';
+    // }
+
     public function create(){
-        return view('admin.infors.create');
+        $data['info']=ClinicInfo::get();
+        return view('admin.infors.create',$data);
     }
     public function store(Request $request){
         $request->validate([
@@ -72,7 +72,7 @@ class ClinicInfoController extends Controller
         }
 
     }
-    public function update(Request $request,ClinicInfo $infor){
+    public function update(Request $request,ClinicInfo $info){
         $request->validate([
             'name'=>'required',
             'address'=>'required',
@@ -90,16 +90,16 @@ class ClinicInfoController extends Controller
 
         try{
             if($request->hasFile('photo')){
-                if($infor->photo){
-                    $exists = Storage::disk('public')->exists("infor/{$infor->photo}");
+                if($info->photo){
+                    $exists = Storage::disk('public')->exists("infor/{$info->photo}");
                     if($exists){
-                        Storage::disk('public')->delete("infor/{$infor->photo}");
+                        Storage::disk('public')->delete("infor/{$info->photo}");
                     }
                 }
     
                 $imageName = Str::random().'.'.$request->photo->getClientOriginalExtension();
                 Storage::disk('public')->putFileAs('infor', $request->photo,$imageName);
-                $infor =ClinicInfo::findOrFail($infor->id);
+                $infor =ClinicInfo::findOrFail($info->id);
                 $infor->name=$request->input('name');
                 $infor->address=$request->input('address');
                 $infor->email=$request->input('email');
@@ -116,7 +116,7 @@ class ClinicInfoController extends Controller
                 $infor->save();
     
             }else{
-                $infor =ClinicInfo::findOrFail($infor->id);
+                $infor =ClinicInfo::findOrFail($info->id);
                 $infor->name=$request->input('name');
                 $infor->address=$request->input('address');
                 $infor->email=$request->input('email');
@@ -142,18 +142,20 @@ class ClinicInfoController extends Controller
             ],500);
         }
     }
-    public function destroy(ClinicInfo $infor){
+    public function destroy(ClinicInfo $info){
         try {
-            if($infor->image){
-                $exists = Storage::disk('public')->exists("infor/{$infor->photo}");
+            if($info->photo){
+                $exists = Storage::disk('public')->exists("infor/{$info->photo}");
                 if($exists){
-                    Storage::disk('public')->delete("infor/{$infor->photo}");
+                    Storage::disk('public')->delete("infor/{$info->photo}");
                 }
             }
-            $infor->delete();
-            return redirect()->route('info.index')->with('success','infor delete successfully');
+
+            if($info->delete()){
+                return redirect()->route('info.index')->with('success','infor delete successfully');
+            }
             
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error($e->getMessage());
             return response()->json([
                 'message'=>'Something goes wrong while deleting a infor!!'

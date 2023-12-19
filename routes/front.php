@@ -3,10 +3,23 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\PatientController;
-
+use App\Models\Appointment;
+use App\Models\ClinicInfo;
+use App\Models\Contact;
+use App\Models\Doctor;
+use App\Models\Patient;
+use App\Models\Servic;
+use App\Models\Testimonial;
 
 Route::get('home', function () {
-    return view('home');
+    $data['appointment']=Appointment::get();
+    $data['doctor']=Doctor::get();
+    $data['patient']=Patient::get();
+    $data['contact']=Contact::get();
+    $data['service']=Servic::get();
+    $data['testimonial']=Testimonial::get();
+    $data['info']=ClinicInfo::get();
+    return view('home',$data);
 })->name('admin.home');
 
 Route::get("/" ,[FrontController::class , "index"])->name('front.home');

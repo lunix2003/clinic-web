@@ -31,12 +31,18 @@
             <!-- small card -->
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>150</h3>
+                    <?php
+                        $count = 0;
+                        foreach($appointment as $row){
+                            $count++;
+                        }
+                    ?>
+                    <h3>{{$count}}</h3>
 
-                    <p>New Orders</p>
+                    <p>New Appointment</p>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-shopping-cart"></i>
+                    <i class="fas fa-calendar-check"></i>
                 </div>
                 <a href="#" class="small-box-footer">
                     More info <i class="fas fa-arrow-circle-right"></i>
@@ -48,12 +54,18 @@
             <!-- small card -->
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>53<sup style="font-size: 20px">%</sup></h3>
+                    <?php
+                        $count = 0;
+                        foreach($doctor as $row){
+                            $count++;
+                        }
+                    ?>
+                    <h3>{{$count}}</h3>
 
-                    <p>Bounce Rate</p>
+                    <p>Doctors</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
+                    <i class="fas fa-user-nurse"></i>
                 </div>
                 <a href="#" class="small-box-footer">
                     More info <i class="fas fa-arrow-circle-right"></i>
@@ -65,9 +77,15 @@
             <!-- small card -->
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3>44</h3>
+                    <?php
+                        $count = 0;
+                        foreach($patient as $row){
+                            $count++;
+                        }
+                    ?>
+                    <h3>{{$count}}</h3>
 
-                    <p>User Registrations</p>
+                    <p>Patient Appointment</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-user-plus"></i>
@@ -82,12 +100,18 @@
             <!-- small card -->
             <div class="small-box bg-danger">
                 <div class="inner">
-                    <h3>65</h3>
+                    <?php
+                        $count = 0;
+                        foreach($contact as $row){
+                            $count++;
+                        }
+                    ?>
+                    <h3>{{$count}}</h3>
 
-                    <p>Unique Visitors</p>
+                    <p>Contact</p>
                 </div>
                 <div class="icon">
-                    <i class="fas fa-chart-pie"></i>
+                    <i class="fas fa-address-book"></i>
                 </div>
                 <a href="#" class="small-box-footer">
                     More info <i class="fas fa-arrow-circle-right"></i>
@@ -98,52 +122,71 @@
     </div>
     <h5 class="mb-2">សង្ខេបពត៌មាន</h5>
     <div class="row">
-        <div class="col-md-3 col-sm-6 col-12">
+        {{-- <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
                 <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">Messages</span>
-                    <span class="info-box-number">1,410</span>
+                    <span class="info-box-text">Contact</span>
+                    
+                    <span class="info-box-number">{{$count}}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
-        </div>
+        </div> --}}
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
                 <span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">Bookmarks</span>
-                    <span class="info-box-number">410</span>
+                    <span class="info-box-text">Service</span>
+                    <?php
+                        $count = 0;
+                        foreach($service as $row){
+                            $count++;
+                        }
+                    ?>
+                    <span class="info-box-number">{{$count}}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
         </div>
         <!-- /.col -->
-        <div class="col-md-3 col-sm-6 col-12">
+        {{-- <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
                 <span class="info-box-icon bg-warning"><i class="fas fa-users"></i></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">{{ trans('menu.guides') }}</span>
-                    <span class="info-box-number">13,648</span>
+                    <span class="info-box-text">Patients</span>
+                    <?php
+                        $count = 0;
+                        foreach($patient as $row){
+                            $count++;
+                        }
+                    ?>
+                    <span class="info-box-number">{{$count}}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
-        </div>
+        </div> --}}
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
                 <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">Likes</span>
-                    <span class="info-box-number">93,139</span>
+                    <span class="info-box-text">Testimonial</span>
+                    <?php
+                        $count = 0;
+                        foreach($testimonial as $row){
+                            $count++;
+                        }
+                    ?>
+                    <span class="info-box-number">{{$count}}</span>
                 </div>
                 <!-- /.info-box-content -->
             </div>

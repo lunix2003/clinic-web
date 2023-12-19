@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Contact;
+use App\Models\ClinicInfo;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -13,18 +14,22 @@ class ContactController extends Controller
 {
     public function index(){
         $data['contact']=Contact::get();
+        $data['info']=ClinicInfo::get();
         return view('admin.contacts.list',$data);
     }
     public function show(Contact $contact){
+        $data['info']=ClinicInfo::get();
         $data['contact']=Contact::findOrFail($contact->id);
         return view('admin.contacts.show',$data);
     }
     public function edit(Contact $contact){
+        $data['info']=ClinicInfo::get();
         $data['contact']=Contact::findOrFail($contact->id);
         return view('admin.contacts.edit',$data); 
     }
     public function create(){
-        return view('admin.contacts.create');
+        $data['info']=ClinicInfo::get();
+        return view('admin.contacts.create',$data);
     }
     public function store(Request $request){
         $request->validate([

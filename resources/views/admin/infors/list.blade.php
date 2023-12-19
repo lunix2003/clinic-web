@@ -59,7 +59,7 @@ Service Management
                 </tr>
             </thead>
             <tbody>
-                @foreach ($infor as $row)
+                @foreach ($info as $row)
                 <tr>
                     <td>{{ $row->id }}</td>
                     <td>
@@ -82,10 +82,6 @@ Service Management
                     </td>
                     <td class="align-middle">
                         <form action="{{route('info.destroy',$row->id)}}" method="POST">
-                            <a class="btn btn-info" href="{{ route('info.show',$row->id)}}"><i
-                                    class="fa fa-eye"></i></a>
-                            <a class="btn btn-primary" href="{{route('info.edit',$row->id)}}"><i
-                                    class="fa fa-edit"></i></a>
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" show_confirm data-toggle="tooltip"

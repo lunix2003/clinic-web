@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use App\Models\Doctor;
 use App\Models\Patient;
+use App\Models\ClinicInfo;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -14,10 +15,13 @@ class PatientController extends Controller
 {
     public function  index(){
         $data["patients"] = Patient::get();
+        $data['info']=ClinicInfo::get();
+        
         return view("admin.patients.list",$data);
     }
     public function create(){
-        return view("admin.patients.create");
+        $data['info']=ClinicInfo::get();
+        return view("admin.patients.create",$data);
     }
     public function show(Patient $patient)
     {
@@ -25,6 +29,7 @@ class PatientController extends Controller
         //     'patient'=>$patient
         // ]);
         $data["patient"]=Patient::findOrFail($patient->id);
+        $data['info']=ClinicInfo::get();
         return view('admin.patients.show',$data);
     }
 
@@ -85,6 +90,7 @@ class PatientController extends Controller
 
     public function edit (Patient $patient){ 
         $data["patient"]=Patient::findOrFail($patient->id);
+        $data['info']=ClinicInfo::get();
         return view('admin.patients.edit',$data);
     }
 

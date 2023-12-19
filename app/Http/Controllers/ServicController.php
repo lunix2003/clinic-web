@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClinicInfo;
 use Exception;
 use App\Models\Servic;
 use Illuminate\Support\Str;
@@ -13,11 +14,13 @@ class ServicController extends Controller
 {
     public function index(){
         $data["services"]=Servic::get();
+        $data['info']=ClinicInfo::get();
         return view('admin.services.list',$data);
     }
 
     public function create(){
-        return view('admin.services.create');
+        $data['info']=ClinicInfo::get();
+        return view('admin.services.create',$data);
 
     }
     public function store(Request $request){
@@ -46,10 +49,12 @@ class ServicController extends Controller
     }
     public function show(Servic $service){
         $data["service"]=Servic::findOrFail($service->id);
+        $data['info']=ClinicInfo::get();
         return view('admin.services.show',$data);
     }
     public function edit(Servic $service){
         $data["service"]=Servic::findOrFail($service->id);
+        $data['info']=ClinicInfo::get();
         return view('admin.services.edit',$data);
     }
     public function update(Request $request,Servic $service){

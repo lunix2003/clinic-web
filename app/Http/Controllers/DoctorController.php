@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Doctor;
+use App\Models\ClinicInfo;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -13,18 +14,22 @@ class DoctorController extends Controller
 {
     public function index(){
         $data['doctor']=Doctor::get();
+        $data['info']=ClinicInfo::get();
         return view('admin.doctors.list',$data);
     }
     public function show(Doctor $doctor){
+        $data['info']=ClinicInfo::get();
         $data['doctor']=Doctor::findOrFail($doctor->id);
         return view('admin.doctors.show',$data);
     }
     public function edit(Doctor $doctor){
+        $data['info']=ClinicInfo::get();
         $data['doctor']=Doctor::findOrFail($doctor->id);
         return view('admin.doctors.edit',$data); 
     }
     public function create(){
-        return view('admin.doctors.create');
+        $data['info']=ClinicInfo::get();
+        return view('admin.doctors.create',$data);
     }
     public function store(Request $request){
         $request->validate([
