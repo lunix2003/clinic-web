@@ -14,7 +14,7 @@ Service Management
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>{{ trans('global.list') }} {{ trans('menu.testimonials') }}</h1>
+                <h1>Testimonial</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">

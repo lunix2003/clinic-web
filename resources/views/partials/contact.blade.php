@@ -2,6 +2,9 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-4">
+                @foreach ($info as $item)
+                    
+                
                 <div class="col-lg-4">
                     <div class="h-100 bg-light rounded d-flex align-items-center p-5">
                         <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 55px; height: 55px;">
@@ -9,7 +12,7 @@
                         </div>
                         <div class="ms-4">
                             <p class="mb-2">Address</p>
-                            <h5 class="mb-0">123 Street, New York, USA</h5>
+                            <h5 class="mb-0">{{$item->address}}</h5>
                         </div>
                     </div>
                 </div>
@@ -20,7 +23,7 @@
                         </div>
                         <div class="ms-4">
                             <p class="mb-2">Call Us Now</p>
-                            <h5 class="mb-0">+012 345 6789</h5>
+                            <h5 class="mb-0">{{$item->phone}}</h5>
                         </div>
                     </div>
                 </div>
@@ -31,10 +34,11 @@
                         </div>
                         <div class="ms-4">
                             <p class="mb-2">Mail Us Now</p>
-                            <h5 class="mb-0">info@example.com</h5>
+                            <h5 class="mb-0">{{$item->email}}</h5>
                         </div>
                     </div>
                 </div>
+                @endforeach
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <div class="bg-light rounded p-5">
                         <p class="d-inline-block border rounded-pill py-1 px-4">Contact Us</p>

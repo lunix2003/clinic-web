@@ -7,19 +7,37 @@
                 <div class="row g-4">
                     <div class="col-sm-4">
                         <div class="border-start border-light ps-4">
-                            <h2 class="text-white mb-1" data-toggle="counter-up">123</h2>
+                            <?php
+                        $count = 0;
+                        foreach($doctor as $row){
+                            $count++;
+                        }
+                    ?>
+                            <h2 class="text-white mb-1" data-toggle="counter-up">{{$count}}</h2>
                             <p class="text-light mb-0">Expert Doctors</p>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="border-start border-light ps-4">
-                            <h2 class="text-white mb-1" data-toggle="counter-up">1234</h2>
-                            <p class="text-light mb-0">Medical Stuff</p>
+                            <?php
+                        $count = 0;
+                        foreach($service as $row){
+                            $count++;
+                        }
+                    ?>
+                            <h2 class="text-white mb-1" data-toggle="counter-up">{{$count}}</h2>
+                            <p class="text-light mb-0">Services</p>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="border-start border-light ps-4">
-                            <h2 class="text-white mb-1" data-toggle="counter-up">12345</h2>
+                            <?php
+                        $count = 0;
+                        foreach($patient as $row){
+                            $count++;
+                        }
+                    ?>
+                            <h2 class="text-white mb-1" data-toggle="counter-up">{{$count}}</h2>
                             <p class="text-light mb-0">Total Patients</p>
                         </div>
                     </div>
