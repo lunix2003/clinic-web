@@ -27,6 +27,7 @@ class ClinicInfoController extends Controller
         return view('admin.infors.create',$data);
     }
     public function store(Request $request){
+        ClinicInfo::truncate();
         $request->validate([
             'name'=>'required',
             'address'=>'required',
@@ -61,7 +62,6 @@ class ClinicInfoController extends Controller
             ];
             if(ClinicInfo::create($allData)){
                 return redirect()->route('info.index')->with('success','ClinicInfo has added successfully');
-
             }
         }
         catch(Exception $ep){

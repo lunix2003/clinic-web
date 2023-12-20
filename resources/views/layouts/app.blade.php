@@ -39,19 +39,20 @@
             <!-- /.login-card-body -->
             <!-- Language Dropdown Menu -->
 
-            <?php  $flag = app()->getlocale();
-                if($flag=="en"){
-                    $flag="us";
-                }
+            <?php  
+            // $flag = app()->getlocale();
+            //     if($flag=="en"){
+            //         $flag="us";
+            //     }
             ?>
-            <div class="btn-group">
+            {{-- <div class="btn-group">
                 <a href="{{url('lang/kh')}}" class="btn btn-default {{ $flag=='kh'?'active':'' }}">
                     <i class="flag-icon flag-icon-kh mr-2"></i> ភាសាខ្មែរ
                 </a>
                 <a href="{{url('lang/en')}}" class="btn btn-default {{ $flag=='us'?'active':'' }}">
                     <i class="flag-icon flag-icon-us mr-2"></i> English
                 </a>
-            </div>
+            </div> --}}
 
         </div>
     </div>
