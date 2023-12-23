@@ -61,12 +61,12 @@ Service Management
                     <td>{{ $row->appointment_date }}</td>
                     <td>{{ $row->appointment_time }}</td>
                     <td>{{ $row->problem }}</td>
-                    <td>{{ $row->status}}</td>
+                    <td>{{ $row->status==1 ? 'Comfirmed' : 'Completed'}}</td>
 
                     <td class="align-middle">
                         <form action="{{route('appointment.destroy',$row->id)}}" method="POST">
-                            <a class="btn btn-info" href="{{ route('appointment.show',$row->id)}}"><i
-                                    class="fa fa-eye"></i></a>
+                            {{-- <a class="btn btn-info" href="{{ route('appointment.show',$row->id)}}"><i
+                                    class="fa fa-eye"></i></a> --}}
                             <a class="btn btn-primary" href="{{route('appointment.edit',$row->id)}}"><i
                                     class="fa fa-edit"></i></a>
                             @csrf

@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
         @foreach ($info as $item)
-        <img src="{{ url('storage/infor/'.$item->photo) }}" alt="AdminLTE Logo"
+        <img src="{{$item->photo !='' ?  url('storage/infor/'.$item->photo) : asset('admin_assets')/dist/img/avatar.png}}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
             
             <span class="brand-text font-weight-light">{{$item->name}}</span>
